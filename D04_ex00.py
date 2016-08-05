@@ -11,10 +11,28 @@
 #         - then ends the program
 ################################################################################
 # Imports
-
+import random
 
 # Body
-
+def guess():
+	#Set a random number
+	randomno = random.randrange(1, 25, 2)
+	for counter in range(0, 5):
+		try:
+			inputno = int(input("Guess a number (between 1-25):"))
+			# If numbers match exit, if greater print Too high, if lower, print Too low
+			if inputno == randomno:
+				print("You guessed correctly!")
+				break
+			elif inputno < randomno:
+				print("Too low")
+			elif inputno > randomno:
+				print("Too high")
+		#If not a number, print message
+		except:
+			print("Try again. Not a number")
+	else:
+		print("Out of guesses.")
 
 
 
@@ -22,7 +40,7 @@
 def main():
 
 
-    print("Hello World!") # Remove this and replace with your function calls
+    guess()
     
 
 if __name__ == '__main__':

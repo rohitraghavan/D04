@@ -17,8 +17,15 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    # +++your code here+++
-    return
+    strlen = len(s)
+    newstring = s
+    if strlen >= 3:
+        #If last 3 chars of a string with length >=3 end in ing, append ly, else append ing
+        if s[-3:] == 'ing':
+            newstring = s + "ly"
+        else:
+            newstring = s + "ing"
+    return newstring
 
 
 # E. not_bad
@@ -30,8 +37,15 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    # +++your code here+++
-    return
+    newstring = s
+    #Find positions of not and bad
+    notposition = s.find("not")
+    badposition = s.find("bad")
+    #If both not and bad are found, and not comes before bad, then replace not..bad with good.
+    if notposition != 1 and badposition != 1 and notposition < badposition:
+        newstring = s[0:notposition] + "good" + s[badposition+3:]
+
+    return newstring
 
 
 # F. front_back
@@ -42,8 +56,27 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # +++your code here+++
-    return
+    #Handle even length string a
+    if len(a) % 2 == 0:
+        splitlength = int(len(a) / 2)
+    #Handle odd length string a
+    else:
+        splitlength = int(len(a) / 2) + 1
+    #Split string a
+    afronthalf = a[:splitlength]
+    abackhalf = a[splitlength:]
+    
+    #Handle even length string b
+    if len(b) % 2 == 0:
+        splitlength = int(len(b) / 2)
+    #Handle odd length string b
+    else:
+        splitlength = int(len(b) / 2) + 1
+    #Split string b
+    bfronthalf = b[:splitlength]
+    bbackhalf = b[splitlength:]
+    
+    return afronthalf + bfronthalf + abackhalf + bbackhalf
 
 
 # Simple provided test() function used in main() to print
@@ -66,7 +99,7 @@ def main():
 
     print()
     print('not_bad')
-    test(not_bad('This movie is not so bad'), 'This movie is good')
+    test(not_bad('This movie is not so bad huh'), 'This movie is good huh')
     test(not_bad('This dinner is not that bad!'), 'This dinner is good!')
     test(not_bad('This tea is not hot'), 'This tea is not hot')
     test(not_bad("It's bad yet not"), "It's bad yet not")

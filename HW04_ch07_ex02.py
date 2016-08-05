@@ -21,15 +21,25 @@
 
 ###############################################################################
 # Imports
-
+import math
 
 # Body
+def eval_loop():
+	inputstr = ''
+	#loop until the user enters 'done'
+	while inputstr != 'done':
+		inputstr = input("Enter an expression to evauate (Hint:Enter 'done' to exit):")
+		try:
+			print(eval(inputstr))
+		#If invalid eval statement, notify the user
+		except:
+			print("Please enter a valid expression.")
+
 
 
 ###############################################################################
 def main():
-    pass  # Remove this line and uncomment below once eval_loop is defined.
-    # eval_loop()
+    eval_loop()
 
 if __name__ == '__main__':
     main()
