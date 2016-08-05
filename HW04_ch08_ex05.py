@@ -21,10 +21,10 @@ def rotate(word, rotationno):
 	return newword
 
 def main():
-	print(rotate('Rohit',1))
-	print(rotate('abcxyz',1))
-	print(rotate('ABCXYZ',1))
-	print(rotate('abcxyz',26))
+	print(rotate('Rohit', 1))
+	print(rotate('abcxyz', 1))
+	print(rotate('ABCXYZ', 1))
+	print(rotate('abcxyz', 26))
 
 if __name__ == "__main__":
 	main()
