@@ -3,7 +3,7 @@
 # Please do provide function calls that test/demonstrate your
 # function.
 
-def rotate(word, rotationno):
+def rotate_word(word, rotationno):
 	newword = ""
 	for char in word:
 		#Convert char to number
@@ -21,10 +21,10 @@ def rotate(word, rotationno):
 	return newword
 
 def main():
-	print(rotate('Rohit', 1))
-	print(rotate('abcxyz', 1))
-	print(rotate('ABCXYZ', 1))
-	print(rotate('abcxyz', 26))
+	print(rotate_word('Rohit', 1))
+	print(rotate_word('abcxyz', 1))
+	print(rotate_word('ABCXYZ', 1))
+	print(rotate_word('abcxyz', 26))
 
 if __name__ == "__main__":
 	main()

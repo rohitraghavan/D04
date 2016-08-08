@@ -35,6 +35,8 @@ def eval_loop():
 		except:
 			print("Please enter a valid expression.")
 
+	return inputstr
+
 
 
 ###############################################################################
