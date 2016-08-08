@@ -42,7 +42,7 @@ def not_bad(s):
     notposition = s.find("not")
     badposition = s.find("bad")
     #If both not and bad are found, and not comes before bad, then replace not..bad with good.
-    if notposition != 1 and badposition != 1 and notposition < badposition:
+    if notposition != -1 and badposition != -1 and notposition < badposition:
         newstring = s[0:notposition] + "good" + s[badposition+3:]
 
     return newstring
