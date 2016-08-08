@@ -13,18 +13,22 @@ def rotate_word(word, rotationno):
 		#Handle upper case chars which go outside bounds on rotating
 		if 65 <= numchar <= 90 and newnumchar > 90:
 			newnumchar = 65 + (newnumchar - 90 -1)
+		elif 65 <= numchar <= 90 and newnumchar < 65:
+			newnumchar = 90 - (65 - newnumchar - 1)
 		#Handle lower case chars which go outside bounds on rotating
 		elif 97 <= numchar <= 122 and newnumchar > 122:
-			newnumchar = 97 + (newnumchar - 122 -1)
+			newnumchar = 97 + (newnumchar - 122 - 1)
+		elif 97 <= numchar <= 122 and newnumchar < 97:
+			newnumchar = 122 - (97 - newnumchar - 1)
 		#Append chars (converted from rotated numbers) to new word
 		newword = newword + chr(newnumchar)
 	return newword
 
 def main():
-	print(rotate_word('Rohit', 1))
+	print(rotate_word('Rohit', -1))
 	print(rotate_word('abcxyz', 1))
-	print(rotate_word('ABCXYZ', 1))
-	print(rotate_word('abcxyz', 26))
+	print(rotate_word('ABCXYZ', -1))
+	print(rotate_word('abcxyz', -1))
 
 if __name__ == "__main__":
 	main()

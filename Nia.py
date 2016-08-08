@@ -16,16 +16,18 @@
 # add 'ly' instead.
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
+import re
+
 def verbing(s):
-    strlen = len(s)
-    newstring = s
-    if strlen >= 3:
-        #If last 3 chars of a string with length >=3 end in ing, append ly, else append ing
-        if s[-3:] == 'ing':
-            newstring = s + "ly"
-        else:
-            newstring = s + "ing"
-    return newstring
+    # +++your code here+++
+    #if length is more than or equal to 3
+    if len(s) >= 3:
+        if (s[-3:] == 'ing'): # is the suffix is ing - return string with ly
+            return s+'ly'
+        else: # else add ing to the string
+            return s+'ing'
+    else: # if length is less than 3 return the same string
+        return s
 
 
 # E. not_bad
@@ -37,16 +39,16 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    newstring = s
-    #Find positions of not and bad
-    notposition = s.find("not")
-    badposition = s.find("bad")
-    #If both not and bad are found, and not comes before bad, then replace not..bad with good.
-    if notposition != -1 and badposition != -1 and notposition < badposition:
-        newstring = s[0:notposition] + "good" + s[badposition+3:]
-
-    return newstring
-
+    # +++your code here+++
+    patterns = ['not','bad']
+    val = s
+    val1 = s.find(patterns[0]) # find the position of patterns in the string
+    val2 = s.find(patterns[1])
+    if val2 > val1: # check if bad occurs after not
+        return re.sub('not (.*?) bad','good',s) # if yes, substitute everything after not
+        #upto bad with good
+    else: # of there is not bad after not, return the string
+        return s
 
 # F. front_back
 # Consider dividing a string into two halves.
@@ -56,27 +58,22 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    #Handle even length string a
-    if len(a) % 2 == 0:
-        splitlength = int(len(a) / 2)
-    #Handle odd length string a
-    else:
-        splitlength = int(len(a) / 2) + 1
-    #Split string a
-    afronthalf = a[:splitlength]
-    abackhalf = a[splitlength:]
-    
-    #Handle even length string b
-    if len(b) % 2 == 0:
-        splitlength = int(len(b) / 2)
-    #Handle odd length string b
-    else:
-        splitlength = int(len(b) / 2) + 1
-    #Split string b
-    bfronthalf = b[:splitlength]
-    bbackhalf = b[splitlength:]
-    
-    return afronthalf + bfronthalf + abackhalf + bbackhalf
+    # +++your code here+++
+    #find half the length of the string
+    half_a = len(a)/2
+    half_b = len(b)/2
+    string_val = ''#initiate a new string
+    if half_a  == int(half_a):# check if half of length is integer (even) or float (odd)
+        if half_b == int(half_b):# check if half of length is integer (even) or float (odd)
+             #if it is integer, split the strings and add them
+            string_val = a[:int(half_a)] + b[:int(half_b)] + a[int(half_a):] + b[int(half_b):]
+        else: # if b is odd, add the extra word to the first part
+             string_val = a[:int(half_a)] + b[:int(half_b)+1] + a[int(half_a):] + b[int(half_b)+1:]
+    elif half_b == int(half_b): # if only b is even, add the extra letter to first part of a
+        string_val = a[:int(half_a)+1] + b[:int(half_b)] + a[int(half_a)+1:] + b[int(half_b):]
+    else:#if both are odd, add the extra letter to first part of a and b
+        string_val = a[:int(half_a)+1] + b[:int(half_b)+1] + a[int(half_a)+1:] + b[int(half_b)+1:]
+    return string_val
 
 
 # Simple provided test() function used in main() to print
@@ -99,12 +96,13 @@ def main():
 
     print()
     print('not_bad')
-    test(not_bad('This movie is not so bad huh'), 'This movie is good huh')
+    test(not_bad('This movie is not so bad'), 'This movie is good')
     test(not_bad('This dinner is not that bad!'), 'This dinner is good!')
     test(not_bad('This tea is not hot'), 'This tea is not hot')
     test(not_bad("It's bad yet not"), "It's bad yet not")
     test(not_bad("It's doubleplusbad."), "It's doubleplusbad.")
     test(not_bad("So bad."), "So bad.")
+
 
     print()
     print('front_back')
